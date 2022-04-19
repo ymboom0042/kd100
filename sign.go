@@ -1,5 +1,5 @@
 // Package src /**
-package src
+package mian
 
 import (
 	"crypto/md5"

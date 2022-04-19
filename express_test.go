@@ -5,7 +5,7 @@
  * @Version: 1.0.0
  * @Date: 2022/04/19 14:07
  */
-package src
+package mian
 
 import (
 	"fmt"
