@@ -16,7 +16,7 @@ func TestExpress_SyncQuery(t *testing.T) {
 	e, _ := NewExpress("1231", "1111")
 
 	p := make(Param)
-	p.Set("com", ComZT).Set("num", "75871577107726")
+	p.Set("com", ComZT).Set("num", "75871577111107726")
 	resp, err := e.SyncQuery(p)
 	if err != nil {
 		fmt.Println(err)
