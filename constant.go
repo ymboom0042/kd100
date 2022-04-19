@@ -1,5 +1,5 @@
-// Package src /**
-package mian
+// Package kd100   /**
+package kd100
 
 const (
 	NULL        = ""

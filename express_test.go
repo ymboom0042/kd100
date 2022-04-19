@@ -1,11 +1,4 @@
-/**
- * @Author: YMBoom
- * @Description:
- * @File:  express_test
- * @Version: 1.0.0
- * @Date: 2022/04/19 14:07
- */
-package mian
+package kd100
 
 import (
 	"fmt"
