@@ -10,6 +10,8 @@ const (
 const (
 	// 实时快递查询
 	methodSyncQuery = "poll/query.do"
+	// 快递查询地图轨迹
+	methodMapTrack = "poll/maptrack.do"
 )
 
 const (

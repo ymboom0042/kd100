@@ -3,7 +3,6 @@ package kd100
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/url"
 )
 
@@ -28,25 +27,11 @@ func NewExpress(customer, key string) (express *Express, err error) {
 	return
 }
 
-// SyncQuery  实时快递单号查询
+// SyncQuery  实时快递单号查询 https://api.kuaidi100.com/document/shishichaxunchanpinjieshao
 func (e *Express) SyncQuery(p Param) (resp QueryResp, err error) {
-	if p == nil {
-		return
-	}
-
-	if num := p.Get("num"); num == NULL {
-		return resp, newErr("快递单号不能为空")
-	}
-
-	com := p.Get("com")
-	if com == NULL {
-		return resp, newErr("快递公司不能为空")
-	}
-
-	if com == ComSF {
-		if phone := p.Get("phone"); phone == NULL {
-			return resp, newErr("顺丰快递手机号不能为空")
-		}
+	// 参数校验
+	if err = p.queryVerify(); err != nil {
+		return resp, err
 	}
 
 	sign := e.Sign(p)
@@ -61,7 +46,6 @@ func (e *Express) SyncQuery(p Param) (resp QueryResp, err error) {
 	}
 
 	if err = json.Unmarshal(res, &resp); err != nil {
-		fmt.Println(err)
 		return resp, newErr("数据解析失败")
 	}
 
@@ -69,6 +53,43 @@ func (e *Express) SyncQuery(p Param) (resp QueryResp, err error) {
 		return resp, newErr(resp.BaseResp.Message)
 	}
 
+	return
+}
+
+// MapTrack 快递查询地图轨迹 https://api.kuaidi100.com/document/5ff2c3e7ba1bf00302f5612e
+func (e *Express) MapTrack(p Param) (resp MapTrackResp, err error) {
+	// 参数校验
+	if err = p.queryVerify(); err != nil {
+		return resp, err
+	}
+
+	if from := p.Get("from"); from == NULL {
+		return resp, newErr("出发地信息不能为空")
+	}
+
+	if to := p.Get("to"); to == NULL {
+		return resp, newErr("目的地信息不能为空")
+	}
+
+	// 签名
+	sign := e.Sign(p)
+	if sign == NULL {
+		return resp, newErr("签名失败")
+	}
+
+	reqParam := e.buildReq(sign, p)
+	res, err := NewClient().Post(methodMapTrack, reqParam)
+	if err != nil {
+		return resp, err
+	}
+
+	if err = json.Unmarshal(res, &resp); err != nil {
+		return resp, newErr("数据解析失败")
+	}
+
+	if resp.BaseResp.ReturnCode != NULL {
+		return resp, newErr(resp.BaseResp.Message)
+	}
 	return
 }
 
