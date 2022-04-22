@@ -2,9 +2,8 @@
 package kd100
 
 const (
-	NULL        = ""
-	gateway     = "https://poll.kuaidi100.com"
-	contentType = "application/x-www-form-urlencoded"
+	NULL    = ""
+	gateway = "https://poll.kuaidi100.com"
 )
 
 const (
@@ -23,6 +22,16 @@ const (
 	ComSF = "shunfeng"
 	ComJT = "jtexpress"
 )
+
+var ComValue = map[string]string{
+	ComYT: "圆通快递",
+	ComYD: "韵达快递",
+	ComZT: "中通快递",
+	ComST: "申通快递",
+	ComYZ: "邮政快递",
+	ComSF: "顺丰快递",
+	ComJT: "极兔速递",
+}
 
 const (
 	StateOnPassage        = "0"

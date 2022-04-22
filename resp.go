@@ -9,7 +9,16 @@ func (s State) Value() string {
 	} else {
 		return "未知"
 	}
+}
 
+type Com string
+
+func (c Com) Value() string {
+	if v, exist := ComValue[string(c)]; exist {
+		return v
+	} else {
+		return "未知"
+	}
 }
 
 type BaseResp struct {
