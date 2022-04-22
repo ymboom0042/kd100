@@ -35,9 +35,16 @@ type QueryResp struct {
 }
 
 type QueryData struct {
-	Context string `json:"context"`
-	Time    string `json:"time"`
-	Ftime   string `json:"ftime"`
+	Context    string `json:"context"`
+	Time       string `json:"time"`
+	Ftime      string `json:"ftime"`
+	Status     string `json:"status"`
+	StatusCode string `json:"statusCode"`
+	AreaCode   string `json:"areaCode"`
+	AreaName   string `json:"areaName"`
+	AreaCenter string `json:"areaCenter"`
+	Location   string `json:"location"`
+	AreaPinYin string `json:"areaPinYin"`
 }
 
 // MapTrackResp 快递查询地图轨迹

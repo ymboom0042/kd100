@@ -6,10 +6,10 @@ import (
 )
 
 func TestExpress_SyncQuery(t *testing.T) {
-	e, _ := NewExpress("1231", "1111")
+	e, _ := NewExpress("043FEBD7E22E86380780064E0436EEAA", "HicFkjwu2981")
 
 	p := make(Param)
-	p.Set("com", ComZT).Set("num", "75871577111107726")
+	p.Set("com", ComZT).Set("num", "75871577107726").Set("resultv2", "4")
 	resp, err := e.SyncQuery(p)
 	if err != nil {
 		fmt.Println(err)
@@ -17,7 +17,8 @@ func TestExpress_SyncQuery(t *testing.T) {
 	}
 
 	for _, r := range resp.Data {
-		fmt.Println(r)
+		fmt.Println(r.Status)
+		fmt.Println(r.StatusCode)
 	}
 }
 
